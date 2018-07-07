@@ -15,9 +15,9 @@ apt-get update
 apt-get install -y tunctl uml-utilities screen
 
 
-wget http://soft.91yun.org/uml/91yun/uml-ssr-64.tar.gz
-tar zfvx uml-ssr-64.tar.gz
-cd uml-ssr-64
+wget http://soft.91yun.org/uml/64/uml.tar.xz
+tar xvJf uml.tar.xz
+cd uml-64
 cur_dir=`pwd`
 cat > run.sh<<-EOF
 #!/bin/sh
@@ -31,9 +31,7 @@ start(){
 	iptables -t nat -A POSTROUTING -o venet0 -j MASQUERADE
 	iptables -I FORWARD -i tap1 -j ACCEPT
 	iptables -I FORWARD -o tap1 -j ACCEPT
-	iptables -t nat -A PREROUTING -i venet0 -p tcp --dport 9191 -j DNAT --to-destination 10.0.0.2
-	iptables -t nat -A PREROUTING -i venet0 -p udp --dport 9191 -j DNAT --to-destination 10.0.0.2
-	screen -dmS uml ${cur_dir}/vmlinux ubda=${cur_dir}/alpine-x64 eth0=tuntap,tap1 mem=64m con=pts con1=fd:0,fd:1
+	screen -dmS uml ${cur_dir}/vmlinux ubda=${cur_dir}/rootfs eth0=tuntap,tap1 mem=384m con=pts con1=fd:0,fd:1
 	ps aux | grep vmlinux
 }
 
