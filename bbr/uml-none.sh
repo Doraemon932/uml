@@ -32,7 +32,7 @@ start(){
 	iptables -t nat -A POSTROUTING -o venet0 -j MASQUERADE
 	iptables -I FORWARD -i tap1 -j ACCEPT
 	iptables -I FORWARD -o tap1 -j ACCEPT
-	screen -dmS uml ${cur_dir}/vmlinux ubda=${cur_dir}/rootfs eth0=tuntap,tap1 mem=384m con=pts con1=fd:0,fd:1
+	screen -dmS uml ${cur_dir}/vmlinux ubda=${cur_dir}/rootfs eth0=tuntap,tap1 mem=256m con=pts con1=fd:0,fd:1
 	ps aux | grep vmlinux
 }
 
