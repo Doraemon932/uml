@@ -2,8 +2,8 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 #=================================================================#
-#   System Required:  ubuntu & debian                                    #
-#   Description: One click Install UML for bbr+ssr                #
+#   System Required:  ubuntu & debian                             #
+#   Description: One click Install UML for bbr                    #
 #   Author: 91yun <https://twitter.com/91yun>                     #
 #   Thanks: @allient neko @Jacky Bao                              #
 #   Intro:  https://www.91yun.org                                 #
@@ -18,6 +18,7 @@ apt-get install -y tunctl uml-utilities screen
 wget http://soft.91yun.org/uml/64/uml.tar.xz
 tar xvJf uml.tar.xz
 cd uml-64
+resize2fs rootfs 5G
 cur_dir=`pwd`
 cat > run.sh<<-EOF
 #!/bin/sh
